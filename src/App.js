@@ -1,12 +1,12 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import InputView from "./InputView";
-import OutputView from "./OutputView";
+import InputView from "./Views/InputView";
+import OutputView from "./Views/OutputView";
 
 class App {
   async run() {
     try {
       const purchaseAmount = await InputView.readPurchaseAmount();
-      // 구입금액 검증
+      // 구입 금액 검증
       const validatedAmount = this.#validatePurchaseAmount(purchaseAmount);
 
       const lottoCount = validatedAmount / 1000;
