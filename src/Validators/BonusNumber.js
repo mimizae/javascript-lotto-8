@@ -13,7 +13,7 @@ class BonusNumber {
     }
   }
   static #validateRange(bonus) {
-    if (bonus < 1 || bonus > 45) {
+    if (!Number.isInteger(bonus) || bonus < 1 || bonus > 45) {
       throw new Error("[ERROR] 보너스 번호는 1과 45 사이의 정수여야 합니다.");
     }
   }
