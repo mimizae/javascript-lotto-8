@@ -9,7 +9,7 @@ class WinningNumbers {
   }
 
   static #parseWinningNumbers(input) {
-    return input.split(",").map((n) => n.trim());
+    return input.split(",").map((n) => Number(n.trim()));
   }
 
   static #validateLength(numbers) {
