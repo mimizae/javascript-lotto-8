@@ -11,14 +11,14 @@ class App {
   async run() {
     try {
       const purchaseAmountInput = await InputView.readPurchaseAmount();
-      // TODO: 검증 로직을 담은 클래스들의 파일명 적절한지? 점검
-      const validatedAmount = PurchaseAmount.validate(purchaseAmountInput);
+      const validatedPurchaseAmount =
+        PurchaseAmount.validate(purchaseAmountInput);
 
-      const lottoCount = validatedAmount / 1000;
+      const lottoCount = validatedPurchaseAmount / 1000;
       OutputView.printLottoCount(lottoCount);
 
       // OutputView.js에서 로또 출력 함수 호출
-      const lottos = LottoMachine.generateLottos(validatedAmount);
+      const lottos = LottoMachine.generateLottos(validatedPurchaseAmount);
       OutputView.printLottoNumbers(lottos);
 
       const winningNumbersInput = await InputView.readWinningNumbers();
@@ -42,7 +42,9 @@ class App {
       );
 
       OutputView.printResult(result.getResultMap());
-      OutputView.printEarningRate(result.getEarningRate(validatedAmount));
+      OutputView.printEarningRate(
+        result.getEarningRate(validatedPurchaseAmount)
+      );
     } catch (error) {
       MissionUtils.Console.print(error.message);
     }
